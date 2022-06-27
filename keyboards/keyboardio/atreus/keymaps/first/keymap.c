@@ -36,10 +36,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    *       voldn  super shift bksp ctrl || alt space   L0  prtsc scroll pause
    */
   [_LW] = LAYOUT( /* [> LOWER <] */
-    LGUI(KC_1), LGUI(KC_2), LGUI(KC_3), LGUI(KC_4), LGUI(KC_5),                   KC_UP,   KC_F7,   KC_F8,   KC_F9,   KC_F10  ,
-    KC_DEL,  KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN,                                  KC_DOWN, KC_F4,   KC_F5,   KC_F6,   KC_F11  ,
-    KC_NO,   KC_VOLU, KC_NO,   KC_NO,   QK_BOOT,   _______,              _______, KC_NO,   KC_F1,   KC_F2,   KC_F3,   KC_F12  ,
-    KC_NO,   KC_VOLD, KC_LGUI, KC_LSFT, KC_BSPC, KC_LCTL,                KC_LALT, KC_SPC,  TO(_QW), KC_PSCR, KC_SLCK, KC_PAUS )
+    LGUI(KC_1),        LGUI(KC_2),       LGUI(KC_3),       LGUI(KC_4), LGUI(KC_5),                   KC_UP,   KC_F7,   KC_F8,   KC_F9,   KC_F10  ,
+    LSFT(ALGR(KC_Z)),  LSFT(ALGR(KC_L)), LSFT(ALGR(KC_W)), KC_RGHT,    KC_PGDN,                      KC_DOWN, KC_F4,   KC_F5,   KC_F6,   KC_F11  ,
+    ALGR(KC_Z),        ALGR(KC_L),       ALGR(KC_W),       KC_NO,      QK_BOOT, _______,    _______, KC_NO,   KC_F1,   KC_F2,   KC_F3,   KC_F12  ,
+    KC_NO,             KC_VOLD,          KC_LGUI,          KC_LSFT,    KC_BSPC, KC_LCTL,    KC_LALT, KC_SPC,  TO(_QW), KC_PSCR, KC_SLCK, KC_PAUS )
 };
 
 
