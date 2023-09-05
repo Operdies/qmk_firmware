@@ -11,6 +11,7 @@ BACKLIGHT_ENABLE = no       # Enable keyboard backlight functionality
 RGBLIGHT_ENABLE = no        # Enable keyboard RGB underglow
 AUDIO_ENABLE = no           # Audio output
 COMBO_ENABLE = yes
+SEND_STRING_ENABLE = yes
 
 UNICODE_ENABLE = yes        # Unicode
 STENO_ENABLE = yes

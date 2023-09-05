@@ -34,6 +34,7 @@ enum combos {
   EQ_EQ,
   LT_LT,
   GT_GT,
+  DF_TAB,
 };
 
 const uint16_t PROGMEM yu_combo[] = {KC_Y, KC_U, COMBO_END};
@@ -46,6 +47,7 @@ const uint16_t PROGMEM eqassign_combo[] = {KC_Q, KC_W, KC_E, COMBO_END};
 const uint16_t PROGMEM eq_combo[] = {KC_Q, KC_E, COMBO_END};
 const uint16_t PROGMEM lt_combo[] = {KC_Q, KC_W, COMBO_END};
 const uint16_t PROGMEM gt_combo[] = {KC_W, KC_E, COMBO_END};
+const uint16_t PROGMEM df_combo[] = {LCTL_T(KC_D) , LSFT_T(KC_F), COMBO_END};
 
 combo_t key_combos[] = {
   [YU_BRC] = COMBO(yu_combo, KC_LBRC),
@@ -58,7 +60,7 @@ combo_t key_combos[] = {
   [EQ_EQ] = COMBO(eq_combo, KC_EQL),
   [LT_LT] = COMBO(lt_combo, KC_LT),
   [GT_GT] = COMBO(gt_combo, KC_GT),
-  [QWE_ASSIGN] = COMBO(eqassign_combo, _ASSIGN),
+  [DF_TAB] = COMBO(df_combo, KC_TAB),
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
