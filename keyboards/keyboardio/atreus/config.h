@@ -37,3 +37,4 @@
 //#define NO_ACTION_TAPPING
 //#define NO_ACTION_ONESHOT
 #define TAPPING_TERM 180
+#define FORCE_NKRO
