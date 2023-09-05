@@ -1,5 +1,4 @@
 // Copyright (C) 2019, 2020  Keyboard.io, Inc
-//
 // this is the style you want to emulate.
 // This is the canonical layout file for the Quantum project. If you want to add another keyboard,
 
@@ -9,7 +8,6 @@
 enum layer_names {
     HOMEROW,
     SYMBOLS,
-    _LW,
 };
 
 enum custom_keycodes {
@@ -89,36 +87,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_NO , KC_NO        , KC_NO        , KC_NO        , KC_BSPC      , KC_LGUI ,     KC_ENT  , KC_SPC       , MO(SYMBOLS)  , KC_NO        , KC_NO        , KC_NO
 ),
 
-//    ┌─────┬──────────────┬──────────────┬──────────────┬─────┐               ┌─────────────┬───────────┬───────────┬─────┬─────┐
-//    │  !  │      @       │      up      │      $       │  %  │               │    home     │     7     │     8     │  9  │  |  │
-//    ├─────┼──────────────┼──────────────┼──────────────┼─────┤               ├─────────────┼───────────┼───────────┼─────┼─────┤
-//    │  (  │ LALT_T(left) │ LCTL_T(down) │ LSFT_T(rght) │  )  │               │ LGUI_T(end) │ LSFT_T(4) │ LCTL_T(5) │  6  │  0  │
-//    ├─────┼──────────────┼──────────────┼──────────────┼─────┼─────┐   ┌─────┼─────────────┼───────────┼───────────┼─────┼─────┤
-//    │  [  │      ]       │      #       │      {       │  }  │  ^  │   │  &  │      0      │     1     │     2     │  3  │  +  │
-//    ├─────┼──────────────┼──────────────┼──────────────┼─────┼─────┤   ├─────┼─────────────┼───────────┼───────────┼─────┼─────┤
-//    │     │              │              │              │     │     │   │     │             │           │           │     │     │
-//    └─────┴──────────────┴──────────────┴──────────────┴─────┴─────┘   └─────┴─────────────┴───────────┴───────────┴─────┴─────┘
+//    ┌─────┬──────────────┬──────────────┬──────────────┬─────┐               ┌──────┬───────────┬───────────┬───────────┬─────┐
+//    │ no  │      no      │      no      │      no      │ no  │               │  no  │     7     │     8     │     9     │  |  │
+//    ├─────┼──────────────┼──────────────┼──────────────┼─────┤               ├──────┼───────────┼───────────┼───────────┼─────┤
+//    │  (  │ LALT_T(left) │ LCTL_T(down) │ LSFT_T(rght) │  )  │               │ lgui │ LSFT_T(4) │ LCTL_T(5) │ LALT_T(6) │  \  │
+//    ├─────┼──────────────┼──────────────┼──────────────┼─────┼─────┐   ┌─────┼──────┼───────────┼───────────┼───────────┼─────┤
+//    │  [  │      ]       │      #       │      {       │  }  │  ^  │   │  &  │  0   │     1     │     2     │     3     │  +  │
+//    ├─────┼──────────────┼──────────────┼──────────────┼─────┼─────┤   ├─────┼──────┼───────────┼───────────┼───────────┼─────┤
+//    │     │              │              │              │     │     │   │     │      │           │           │           │     │
+//    └─────┴──────────────┴──────────────┴──────────────┴─────┴─────┘   └─────┴──────┴───────────┴───────────┴───────────┴─────┘
 [SYMBOLS] = LAYOUT_first(
-  KC_EXLM , KC_AT           , KC_UP           , KC_DLR          , KC_PERC ,                         KC_HOME        , KC_7         , KC_8         , KC_9    , KC_PIPE,
-  KC_LPRN , LALT_T(KC_LEFT) , LCTL_T(KC_DOWN) , LSFT_T(KC_RGHT) , KC_RPRN ,                         LGUI_T(KC_END) , LSFT_T(KC_4) , LCTL_T(KC_5) , KC_6    , KC_0   ,
-  KC_LBRC , KC_RBRC         , KC_HASH         , KC_LCBR         , KC_RCBR , KC_CIRC ,     KC_AMPR , KC_0           , KC_1         , KC_2         , KC_3    , KC_PLUS,
-  KC_TRNS , KC_TRNS         , KC_TRNS         , KC_TRNS         , KC_TRNS , KC_TRNS ,     KC_TRNS , KC_TRNS        , KC_TRNS      , KC_TRNS      , KC_TRNS , KC_TRNS
-),
-
-//    ┌─────┬─────┬─────┬─────┬─────┐               ┌──────┬──────┬─────┬──────┬─────┐
-//    │     │     │     │     │     │               │      │      │     │      │     │
-//    ├─────┼─────┼─────┼─────┼─────┤               ├──────┼──────┼─────┼──────┼─────┤
-//    │     │     │     │     │     │               │ left │ down │ up  │ rght │     │
-//    ├─────┼─────┼─────┼─────┼─────┼─────┐   ┌─────┼──────┼──────┼─────┼──────┼─────┤
-//    │     │     │     │     │     │     │   │     │      │      │     │      │     │
-//    ├─────┼─────┼─────┼─────┼─────┼─────┤   ├─────┼──────┼──────┼─────┼──────┼─────┤
-//    │     │     │     │     │     │     │   │     │      │      │     │      │     │
-//    └─────┴─────┴─────┴─────┴─────┴─────┘   └─────┴──────┴──────┴─────┴──────┴─────┘
-[_LW] = LAYOUT_first(
-  KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS ,                         KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS  , KC_TRNS,
-  KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS ,                         KC_LEFT , KC_DOWN , KC_UP   , KC_RIGHT , KC_TRNS,
-  KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS ,     KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS  , KC_TRNS,
-  KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS ,     KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS , KC_TRNS  , KC_TRNS
+  KC_NO   , KC_NO           , KC_NO           , KC_NO           , KC_NO   ,                         KC_NO   , KC_7         , KC_8         , KC_9         , KC_PIPE,
+  KC_LPRN , LALT_T(KC_LEFT) , LCTL_T(KC_DOWN) , LSFT_T(KC_RGHT) , KC_RPRN ,                         KC_LGUI , LSFT_T(KC_4) , LCTL_T(KC_5) , LALT_T(KC_6) , KC_BSLS,
+  KC_LBRC , KC_RBRC         , KC_HASH         , KC_LCBR         , KC_RCBR , KC_CIRC ,     KC_AMPR , KC_0    , KC_1         , KC_2         , KC_3         , KC_PLUS,
+  KC_TRNS , KC_TRNS         , KC_TRNS         , KC_TRNS         , KC_TRNS , KC_TRNS ,     KC_TRNS , KC_TRNS , KC_TRNS      , KC_TRNS      , KC_TRNS      , KC_TRNS
 )
 };
 
