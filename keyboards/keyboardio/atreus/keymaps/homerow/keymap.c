@@ -24,9 +24,9 @@ enum custom_keycodes {
 };
 
 enum combos {
-  YU_BRC,
+  UI_BRC,
+  IO_BRC,
   JK_ESC,
-  OP_BRC,
   QW_QUOT,
   DA_DASH,
   AS_APO,
@@ -35,11 +35,14 @@ enum combos {
   LT_LT,
   GT_GT,
   DF_TAB,
+  AE_AE,
+  OE_OE,
+  AO_AO,
 };
 
-const uint16_t PROGMEM yu_combo[] = {KC_Y, KC_U, COMBO_END};
+const uint16_t PROGMEM ui_combo[] = {KC_U, KC_I, COMBO_END};
+const uint16_t PROGMEM io_combo[] = {KC_I, KC_O, COMBO_END};
 const uint16_t PROGMEM jk_combo[] = {LSFT_T(KC_J) , LCTL_T(KC_K), COMBO_END};
-const uint16_t PROGMEM op_combo[] = {KC_O, KC_P, COMBO_END};
 const uint16_t PROGMEM qw_combo[] = {KC_Q, KC_W, COMBO_END};
 const uint16_t PROGMEM as_combo[] = {KC_A, LALT_T(KC_S), COMBO_END};
 const uint16_t PROGMEM da_combo[] = {LCTL_T(KC_D), KC_A, COMBO_END};
@@ -48,11 +51,14 @@ const uint16_t PROGMEM eq_combo[] = {KC_Q, KC_E, COMBO_END};
 const uint16_t PROGMEM lt_combo[] = {KC_Q, KC_W, COMBO_END};
 const uint16_t PROGMEM gt_combo[] = {KC_W, KC_E, COMBO_END};
 const uint16_t PROGMEM df_combo[] = {LCTL_T(KC_D) , LSFT_T(KC_F), COMBO_END};
+const uint16_t PROGMEM ae_combo[] = {KC_A, KC_E, COMBO_END};
+const uint16_t PROGMEM oe_combo[] = {KC_O, KC_E, COMBO_END};
+const uint16_t PROGMEM ao_combo[] = {KC_A, KC_O, COMBO_END};
 
 combo_t key_combos[] = {
-  [YU_BRC] = COMBO(yu_combo, KC_LBRC),
+  [UI_BRC] = COMBO(ui_combo, KC_LBRC),
+  [IO_BRC] = COMBO(io_combo, KC_RBRC),
   [JK_ESC] = COMBO(jk_combo, KC_ESC),
-  [OP_BRC] = COMBO(op_combo, KC_RBRC),
   [QW_QUOT] = COMBO(qw_combo, KC_DQUO),
   [AS_APO] = COMBO(as_combo, KC_QUOT),
   [DA_DASH] = COMBO(da_combo, KC_MINS),
@@ -61,39 +67,42 @@ combo_t key_combos[] = {
   [LT_LT] = COMBO(lt_combo, KC_LT),
   [GT_GT] = COMBO(gt_combo, KC_GT),
   [DF_TAB] = COMBO(df_combo, KC_TAB),
+  [AE_AE] = COMBO(ae_combo, ALGR(KC_Z)),
+  [OE_OE] = COMBO(oe_combo, ALGR(KC_L)),
+  [AO_AO] = COMBO(ao_combo, ALGR(KC_W)),
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-//    ┌─────┬───────────┬─────────────┬───────────┬───────────┐                ┌───────────┬─────────────┬───────────┬───────────┬─────┐
-//    │  q  │     w     │      e      │     r     │     t     │                │     y     │      u      │     i     │     o     │  p  │
-//    ├─────┼───────────┼─────────────┼───────────┼───────────┤                ├───────────┼─────────────┼───────────┼───────────┼─────┤
-//    │  a  │ LALT_T(s) │  LCTL_T(d)  │ LSFT_T(f) │ LGUI_T(g) │                │ LGUI_T(h) │  LSFT_T(j)  │ LCTL_T(k) │ LALT_T(l) │  ;  │
-//    ├─────┼───────────┼─────────────┼───────────┼───────────┼──────┐   ┌─────┼───────────┼─────────────┼───────────┼───────────┼─────┤
-//    │  z  │     x     │      c      │     v     │     b     │  `   │   │  \  │     n     │      m      │     ,     │     .     │  /  │
-//    ├─────┼───────────┼─────────────┼───────────┼───────────┼──────┤   ├─────┼───────────┼─────────────┼───────────┼───────────┼─────┤
-//    │ esc │    tab    │ MO(SYMBOLS) │    no     │   bspc    │ lgui │   │ ent │    spc    │ MO(SYMBOLS) │     -     │     '     │ ent │
-//    └─────┴───────────┴─────────────┴───────────┴───────────┴──────┘   └─────┴───────────┴─────────────┴───────────┴───────────┴─────┘
+//    ┌────┬───────────┬───────────┬───────────┬───────────┐                ┌───────────┬─────────────┬───────────┬───────────┬────┐
+//    │ q  │     w     │     e     │     r     │     t     │                │     y     │      u      │     i     │     o     │ p  │
+//    ├────┼───────────┼───────────┼───────────┼───────────┤                ├───────────┼─────────────┼───────────┼───────────┼────┤
+//    │ a  │ LALT_T(s) │ LCTL_T(d) │ LSFT_T(f) │ LGUI_T(g) │                │ LGUI_T(h) │  LSFT_T(j)  │ LCTL_T(k) │ LALT_T(l) │ ;  │
+//    ├────┼───────────┼───────────┼───────────┼───────────┼──────┐   ┌─────┼───────────┼─────────────┼───────────┼───────────┼────┤
+//    │ z  │     x     │     c     │     v     │     b     │  `   │   │  \  │     n     │      m      │     ,     │     .     │ /  │
+//    ├────┼───────────┼───────────┼───────────┼───────────┼──────┤   ├─────┼───────────┼─────────────┼───────────┼───────────┼────┤
+//    │ no │    no     │    no     │    no     │   bspc    │ lgui │   │ ent │    spc    │ MO(SYMBOLS) │    no     │    no     │ no │
+//    └────┴───────────┴───────────┴───────────┴───────────┴──────┘   └─────┴───────────┴─────────────┴───────────┴───────────┴────┘
 [HOMEROW] = LAYOUT_first(
-  KC_Q   , KC_W         , KC_E         , KC_R         , KC_T         ,                         KC_Y         , KC_U         , KC_I         , KC_O         , KC_P   ,
-  KC_A   , LALT_T(KC_S) , LCTL_T(KC_D) , LSFT_T(KC_F) , LGUI_T(KC_G) ,                         LGUI_T(KC_H) , LSFT_T(KC_J) , LCTL_T(KC_K) , LALT_T(KC_L) , KC_SCLN,
-  KC_Z   , KC_X         , KC_C         , KC_V         , KC_B         , KC_GRV  ,     KC_BSLS , KC_N         , KC_M         , KC_COMM      , KC_DOT       , KC_SLSH,
-  KC_ESC , KC_TAB       , MO(SYMBOLS)  , KC_NO        , KC_BSPC      , KC_LGUI ,     KC_ENT  , KC_SPC       , MO(SYMBOLS)  , KC_MINS      , KC_QUOT      , KC_ENT
+  KC_Q  , KC_W         , KC_E         , KC_R         , KC_T         ,                         KC_Y         , KC_U         , KC_I         , KC_O         , KC_P   ,
+  KC_A  , LALT_T(KC_S) , LCTL_T(KC_D) , LSFT_T(KC_F) , LGUI_T(KC_G) ,                         LGUI_T(KC_H) , LSFT_T(KC_J) , LCTL_T(KC_K) , LALT_T(KC_L) , KC_SCLN,
+  KC_Z  , KC_X         , KC_C         , KC_V         , KC_B         , KC_GRV  ,     KC_BSLS , KC_N         , KC_M         , KC_COMM      , KC_DOT       , KC_SLSH,
+  KC_NO , KC_NO        , KC_NO        , KC_NO        , KC_BSPC      , KC_LGUI ,     KC_ENT  , KC_SPC       , MO(SYMBOLS)  , KC_NO        , KC_NO        , KC_NO
 ),
 
-//    ┌─────┬──────────────┬──────────────┬──────────────┬──────┐                 ┌─────────────┬───────────┬───────────┬───┬───┐
-//    │  !  │      @       │      up      │      $       │  %   │                 │    home     │     7     │     8     │ 9 │ | │
-//    ├─────┼──────────────┼──────────────┼──────────────┼──────┤                 ├─────────────┼───────────┼───────────┼───┼───┤
-//    │  (  │ LALT_T(left) │ LCTL_T(down) │ LSFT_T(rght) │  )   │                 │ LGUI_T(end) │ LSFT_T(4) │ LCTL_T(5) │ 6 │ \ │
-//    ├─────┼──────────────┼──────────────┼──────────────┼──────┼──────┐   ┌──────┼─────────────┼───────────┼───────────┼───┼───┤
-//    │  [  │      ]       │      #       │      {       │  }   │  ^   │   │  &   │      *      │     1     │     2     │ 3 │ + │
-//    ├─────┼──────────────┼──────────────┼──────────────┼──────┼──────┤   ├──────┼─────────────┼───────────┼───────────┼───┼───┤
-//    │ esc │     ins      │     lgui     │     lsft     │ bspc │ lctl │   │ lalt │     spc     │           │     .     │ 0 │ = │
-//    └─────┴──────────────┴──────────────┴──────────────┴──────┴──────┘   └──────┴─────────────┴───────────┴───────────┴───┴───┘
+//    ┌─────┬──────────────┬──────────────┬──────────────┬─────┐               ┌─────────────┬───────────┬───────────┬─────┬─────┐
+//    │  !  │      @       │      up      │      $       │  %  │               │    home     │     7     │     8     │  9  │  |  │
+//    ├─────┼──────────────┼──────────────┼──────────────┼─────┤               ├─────────────┼───────────┼───────────┼─────┼─────┤
+//    │  (  │ LALT_T(left) │ LCTL_T(down) │ LSFT_T(rght) │  )  │               │ LGUI_T(end) │ LSFT_T(4) │ LCTL_T(5) │  6  │  0  │
+//    ├─────┼──────────────┼──────────────┼──────────────┼─────┼─────┐   ┌─────┼─────────────┼───────────┼───────────┼─────┼─────┤
+//    │  [  │      ]       │      #       │      {       │  }  │  ^  │   │  &  │      0      │     1     │     2     │  3  │  +  │
+//    ├─────┼──────────────┼──────────────┼──────────────┼─────┼─────┤   ├─────┼─────────────┼───────────┼───────────┼─────┼─────┤
+//    │     │              │              │              │     │     │   │     │             │           │           │     │     │
+//    └─────┴──────────────┴──────────────┴──────────────┴─────┴─────┘   └─────┴─────────────┴───────────┴───────────┴─────┴─────┘
 [SYMBOLS] = LAYOUT_first(
-  KC_EXLM , KC_AT           , KC_UP           , KC_DLR          , KC_PERC ,                         KC_HOME        , KC_7         , KC_8         , KC_9 , KC_PIPE,
-  KC_LPRN , LALT_T(KC_LEFT) , LCTL_T(KC_DOWN) , LSFT_T(KC_RGHT) , KC_RPRN ,                         LGUI_T(KC_END) , LSFT_T(KC_4) , LCTL_T(KC_5) , KC_6 , KC_BSLS,
-  KC_LBRC , KC_RBRC         , KC_HASH         , KC_LCBR         , KC_RCBR , KC_CIRC ,     KC_AMPR , KC_ASTR        , KC_1         , KC_2         , KC_3 , KC_PLUS,
-  KC_ESC  , KC_INS          , KC_LGUI         , KC_LSFT         , KC_BSPC , KC_LCTL ,     KC_LALT , KC_SPC         , KC_TRNS      , KC_DOT       , KC_0 , KC_EQL
+  KC_EXLM , KC_AT           , KC_UP           , KC_DLR          , KC_PERC ,                         KC_HOME        , KC_7         , KC_8         , KC_9    , KC_PIPE,
+  KC_LPRN , LALT_T(KC_LEFT) , LCTL_T(KC_DOWN) , LSFT_T(KC_RGHT) , KC_RPRN ,                         LGUI_T(KC_END) , LSFT_T(KC_4) , LCTL_T(KC_5) , KC_6    , KC_0   ,
+  KC_LBRC , KC_RBRC         , KC_HASH         , KC_LCBR         , KC_RCBR , KC_CIRC ,     KC_AMPR , KC_0           , KC_1         , KC_2         , KC_3    , KC_PLUS,
+  KC_TRNS , KC_TRNS         , KC_TRNS         , KC_TRNS         , KC_TRNS , KC_TRNS ,     KC_TRNS , KC_TRNS        , KC_TRNS      , KC_TRNS      , KC_TRNS , KC_TRNS
 ),
 
 //    ┌─────┬─────┬─────┬─────┬─────┐               ┌──────┬──────┬─────┬──────┬─────┐

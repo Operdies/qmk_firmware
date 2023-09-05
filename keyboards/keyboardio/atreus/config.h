@@ -38,3 +38,7 @@
 //#define NO_ACTION_ONESHOT
 #define TAPPING_TERM 180
 #define FORCE_NKRO
+
+#define COMBO_TERM 50
+#define COMBO_STRICT_TIMER
+
