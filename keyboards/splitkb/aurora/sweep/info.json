@@ -2,6 +2,7 @@
     "manufacturer": "splitkb.com",
     "url": "https://splitkb.com/products/aurora-sweep-pcb-kit",
     "maintainer": "splitkb",
+    "bootloader": "rp2040",
     "usb": {
         "vid": "0x8D1D",
         "device_version": "1.0.0"
