@@ -15,3 +15,7 @@
 
 DEFAULT_FOLDER = splitkb/aurora/sweep/rev1
 CONVERT_TO = liatris
+
+NKRO_ENABLE = yes
+COMBO_ENABLE = yes
+SEND_STRING_ENABLE = yes

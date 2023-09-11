@@ -16,6 +16,12 @@
 
 #pragma once
 
+#define TAPPING_TERM 180
+#define FORCE_NKRO
+
+#define COMBO_TERM 50
+#define COMBO_STRICT_TIMER
+
 // Not yet available in `info.json`
 #ifdef OLED_ENABLE
 #   define OLED_FONT_H "keyboards/splitkb/aurora/sweep/glcdfont.c"

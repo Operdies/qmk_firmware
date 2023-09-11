@@ -11,37 +11,80 @@ enum layer_names {
     SYMBOLS,
 };
 
+enum custom_keycodes {
+    _ASSIGN = SAFE_RANGE,
+};
+
+enum combos {
+  JK_ESC,
+  QWE_ASSIGN,
+  AE_AE,
+  OE_OE,
+  AO_AO,
+};
+
+const uint16_t PROGMEM jk_combo[] = {LSFT_T(KC_J) , LCTL_T(KC_K), COMBO_END};
+const uint16_t PROGMEM eqassign_combo[] = {KC_Q, KC_W, KC_E, COMBO_END};
+const uint16_t PROGMEM ae_combo[] = {KC_A, KC_E, COMBO_END};
+const uint16_t PROGMEM oe_combo[] = {KC_O, KC_E, COMBO_END};
+const uint16_t PROGMEM ao_combo[] = {KC_A, KC_O, COMBO_END};
+
+
+combo_t key_combos[] = {
+  [JK_ESC] = COMBO(jk_combo, KC_ESC),
+  [QWE_ASSIGN] = COMBO(eqassign_combo, _ASSIGN),
+  [AE_AE] = COMBO(ae_combo, ALGR(KC_Z)),
+  [OE_OE] = COMBO(oe_combo, ALGR(KC_L)),
+  [AO_AO] = COMBO(ao_combo, ALGR(KC_W)),
+};
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-//    ┌───────────┬───────────┬───────────┬──────────┬──────┐                       ┌──────┬──────────┬───────────┬───────────┬───────────┐
-//    │     q     │     w     │     e     │    r     │  t   │                       │  y   │    u     │     i     │     o     │     p     │
-//    ├───────────┼───────────┼───────────┼──────────┼──────┤                       ├──────┼──────────┼───────────┼───────────┼───────────┤
-//    │ LSFT_T(a) │ LT(5, s)  │ LT(1, d)  │ LT(3, f) │  g   │                       │  h   │ LT(4, j) │ LT(2, k)  │ LT(6, l)  │ LSFT_T(;) │
-//    ├───────────┼───────────┼───────────┼──────────┼──────┤                       ├──────┼──────────┼───────────┼───────────┼───────────┤
-//    │     z     │ LCTL_T(x) │ LALT_T(c) │    v     │  b   │                       │  n   │    m     │ LALT_T(,) │ LCTL_T(.) │     /     │
-//    └───────────┴───────────┴───────────┴──────────┼──────┼──────┐   ┌────────────┼──────┼──────────┴───────────┴───────────┴───────────┘
-//                                                   │ kp_0 │ bspc │   │ LT(7, spc) │ kp_1 │
-//                                                   └──────┴──────┘   └────────────┴──────┘
+//    ┌───┬───────────┬───────────┬───────────┬──────────────────────┐                ┌───────────┬───────────┬───────────┬───────────┬───┐
+//    │ q │     w     │     e     │     r     │          t           │                │     y     │     u     │     i     │     o     │ p │
+//    ├───┼───────────┼───────────┼───────────┼──────────────────────┤                ├───────────┼───────────┼───────────┼───────────┼───┤
+//    │ a │ LALT_T(s) │ LCTL_T(d) │ LSFT_T(f) │      LGUI_T(g)       │                │ LGUI_T(h) │ LSFT_T(j) │ LCTL_T(k) │ LALT_T(l) │ ; │
+//    ├───┼───────────┼───────────┼───────────┼──────────────────────┤                ├───────────┼───────────┼───────────┼───────────┼───┤
+//    │ z │     x     │     c     │     v     │          b           │                │     n     │     m     │     ,     │     .     │ / │
+//    └───┴───────────┴───────────┴───────────┼──────────────────────┼──────┐   ┌─────┼───────────┼───────────┴───────────┴───────────┴───┘
+//                                            │ LT(MO(SYMBOLS), tab) │ bspc │   │ spc │    ent    │
+//                                            └──────────────────────┴──────┘   └─────┴───────────┘
 [HOMEROW] = LAYOUT_split_3x5_2(
-  KC_Q         , KC_W         , KC_E         , KC_R        , KC_T  ,                               KC_Y  , KC_U        , KC_I            , KC_O           , KC_P           ,
-  LSFT_T(KC_A) , LT(5, KC_S)  , LT(1, KC_D)  , LT(3, KC_F) , KC_G  ,                               KC_H  , LT(4, KC_J) , LT(2, KC_K)     , LT(6, KC_L)    , LSFT_T(KC_SCLN),
-  KC_Z         , LCTL_T(KC_X) , LALT_T(KC_C) , KC_V        , KC_B  ,                               KC_N  , KC_M        , LALT_T(KC_COMM) , LCTL_T(KC_DOT) , KC_SLSH        ,
-                                                             KC_P0 , KC_BSPC ,     LT(7, KC_SPC) , KC_P1
+  KC_Q , KC_W         , KC_E         , KC_R         , KC_T                    ,                        KC_Y         , KC_U         , KC_I         , KC_O         , KC_P   ,
+  KC_A , LALT_T(KC_S) , LCTL_T(KC_D) , LSFT_T(KC_F) , LGUI_T(KC_G)            ,                        LGUI_T(KC_H) , LSFT_T(KC_J) , LCTL_T(KC_K) , LALT_T(KC_L) , KC_SCLN,
+  KC_Z , KC_X         , KC_C         , KC_V         , KC_B                    ,                        KC_N         , KC_M         , KC_COMM      , KC_DOT       , KC_SLSH,
+                                                      LT(MO(SYMBOLS), KC_TAB) , KC_BSPC ,     KC_SPC , KC_ENT
 ),
 
-//    ┌───────────┬───────────┬───────────┬──────────┬──────┐                       ┌──────┬──────────┬───────────┬───────────┬───────────┐
-//    │     q     │     w     │     e     │    r     │  t   │                       │  y   │    u     │     i     │     o     │     p     │
-//    ├───────────┼───────────┼───────────┼──────────┼──────┤                       ├──────┼──────────┼───────────┼───────────┼───────────┤
-//    │ LSFT_T(a) │ LT(5, s)  │ LT(1, d)  │ LT(3, f) │  g   │                       │  h   │ LT(4, j) │ LT(2, k)  │ LT(6, l)  │ LSFT_T(;) │
-//    ├───────────┼───────────┼───────────┼──────────┼──────┤                       ├──────┼──────────┼───────────┼───────────┼───────────┤
-//    │     z     │ LCTL_T(x) │ LALT_T(c) │    v     │  b   │                       │  n   │    m     │ LALT_T(,) │ LCTL_T(.) │     /     │
-//    └───────────┴───────────┴───────────┴──────────┼──────┼──────┐   ┌────────────┼──────┼──────────┴───────────┴───────────┴───────────┘
-//                                                   │ kp_0 │ bspc │   │ LT(7, spc) │ kp_1 │
-//                                                   └──────┴──────┘   └────────────┴──────┘
+//    ┌───┬──────────────┬──────────────┬──────────────┬───────────┐               ┌──────┬───────────┬───────────┬───────────┬───┐
+//    │ ` │      =       │      -       │      '       │    tab    │               │  no  │     7     │     8     │     9     │ | │
+//    ├───┼──────────────┼──────────────┼──────────────┼───────────┤               ├──────┼───────────┼───────────┼───────────┼───┤
+//    │ ( │ LALT_T(left) │ LCTL_T(down) │ LSFT_T(rght) │ LGUI_T()) │               │ lgui │ LSFT_T(4) │ LCTL_T(5) │ LALT_T(6) │ \ │
+//    ├───┼──────────────┼──────────────┼──────────────┼───────────┤               ├──────┼───────────┼───────────┼───────────┼───┤
+//    │ [ │      ]       │      #       │      {       │     &     │               │  0   │     1     │     2     │     3     │ \ │
+//    └───┴──────────────┴──────────────┴──────────────┼───────────┼─────┐   ┌─────┼──────┼───────────┴───────────┴───────────┴───┘
+//                                                     │           │     │   │     │      │
+//                                                     └───────────┴─────┘   └─────┴──────┘
 [SYMBOLS] = LAYOUT_split_3x5_2(
-  KC_Q         , KC_W         , KC_E         , KC_R        , KC_T  ,                               KC_Y  , KC_U        , KC_I            , KC_O           , KC_P           ,
-  LSFT_T(KC_A) , LT(5, KC_S)  , LT(1, KC_D)  , LT(3, KC_F) , KC_G  ,                               KC_H  , LT(4, KC_J) , LT(2, KC_K)     , LT(6, KC_L)    , LSFT_T(KC_SCLN),
-  KC_Z         , LCTL_T(KC_X) , LALT_T(KC_C) , KC_V        , KC_B  ,                               KC_N  , KC_M        , LALT_T(KC_COMM) , LCTL_T(KC_DOT) , KC_SLSH        ,
-                                                             KC_P0 , KC_BSPC ,     LT(7, KC_SPC) , KC_P1
+  KC_GRAVE , KC_EQL          , KC_MINS         , KC_QUOT         , KC_TAB          ,                         KC_NO   , KC_7         , KC_8         , KC_9         , KC_PIPE,
+  KC_LPRN  , LALT_T(KC_LEFT) , LCTL_T(KC_DOWN) , LSFT_T(KC_RGHT) , LGUI_T(KC_RPRN) ,                         KC_LGUI , LSFT_T(KC_4) , LCTL_T(KC_5) , LALT_T(KC_6) , KC_BSLS,
+  KC_LBRC  , KC_RBRC         , KC_HASH         , KC_LCBR         , KC_AMPR         ,                         KC_0    , KC_1         , KC_2         , KC_3         , KC_BSLS,
+                                                                   KC_TRNS         , KC_TRNS ,     KC_TRNS , KC_TRNS
 )
 };
 
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case _ASSIGN:
+            if (record->event.pressed) {
+                SEND_STRING(" = ");
+            }
+            break;
+        case LGUI_T(KC_RPRN):
+            if (record->tap.count && record->event.pressed) {
+                tap_code16(KC_RPRN); // Send KC_RPRN on tap
+                return false;        // Return false to ignore further processing of key
+            }
+            break;
+    }
+    return true;
+}
