@@ -7,8 +7,9 @@
  */
 
 enum layer_names {
-    HOMEROW,
-    SYMBOLS,
+    _HOMEROW,
+    _SYMBOLS,
+    _MOUSE,
 };
 
 enum custom_keycodes {
@@ -39,20 +40,20 @@ combo_t key_combos[] = {
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-//    ┌───┬───────────┬───────────┬───────────┬──────────────────────┐                ┌───────────┬───────────┬───────────┬───────────┬───┐
-//    │ q │     w     │     e     │     r     │          t           │                │     y     │     u     │     i     │     o     │ p │
-//    ├───┼───────────┼───────────┼───────────┼──────────────────────┤                ├───────────┼───────────┼───────────┼───────────┼───┤
-//    │ a │ LALT_T(s) │ LCTL_T(d) │ LSFT_T(f) │      LGUI_T(g)       │                │ LGUI_T(h) │ LSFT_T(j) │ LCTL_T(k) │ LALT_T(l) │ ; │
-//    ├───┼───────────┼───────────┼───────────┼──────────────────────┤                ├───────────┼───────────┼───────────┼───────────┼───┤
-//    │ z │     x     │     c     │     v     │          b           │                │     n     │     m     │     ,     │     .     │ / │
-//    └───┴───────────┴───────────┴───────────┼──────────────────────┼──────┐   ┌─────┼───────────┼───────────┴───────────┴───────────┴───┘
-//                                            │ LT(MO(SYMBOLS), tab) │ bspc │   │ spc │    ent    │
-//                                            └──────────────────────┴──────┘   └─────┴───────────┘
-[HOMEROW] = LAYOUT_split_3x5_2(
-  KC_Q , KC_W         , KC_E         , KC_R         , KC_T                    ,                        KC_Y         , KC_U         , KC_I         , KC_O         , KC_P   ,
-  KC_A , LALT_T(KC_S) , LCTL_T(KC_D) , LSFT_T(KC_F) , LGUI_T(KC_G)            ,                        LGUI_T(KC_H) , LSFT_T(KC_J) , LCTL_T(KC_K) , LALT_T(KC_L) , KC_SCLN,
-  KC_Z , KC_X         , KC_C         , KC_V         , KC_B                    ,                        KC_N         , KC_M         , KC_COMM      , KC_DOT       , KC_SLSH,
-                                                      LT(MO(SYMBOLS), KC_TAB) , KC_BSPC ,     KC_SPC , KC_ENT
+//    ┌───┬───────────┬───────────┬───────────┬───────────┐                                                 ┌───────────┬───────────┬───────────┬───────────┬───┐
+//    │ q │     w     │     e     │     r     │     t     │                                                 │     y     │     u     │     i     │     o     │ p │
+//    ├───┼───────────┼───────────┼───────────┼───────────┤                                                 ├───────────┼───────────┼───────────┼───────────┼───┤
+//    │ a │ LALT_T(s) │ LCTL_T(d) │ LSFT_T(f) │ LGUI_T(g) │                                                 │ LGUI_T(h) │ LSFT_T(j) │ LCTL_T(k) │ LALT_T(l) │ ; │
+//    ├───┼───────────┼───────────┼───────────┼───────────┤                                                 ├───────────┼───────────┼───────────┼───────────┼───┤
+//    │ z │     x     │     c     │     v     │     b     │                                                 │     n     │     m     │     ,     │     .     │ / │
+//    └───┴───────────┴───────────┴───────────┼───────────┼───────────────────────┐   ┌─────────────────────┼───────────┼───────────┴───────────┴───────────┴───┘
+//                                            │   bspc    │ LT(MO(_SYMBOLS), tab) │   │ LT(MO(_MOUSE), ent) │    spc    │
+//                                            └───────────┴───────────────────────┘   └─────────────────────┴───────────┘
+[_HOMEROW] = LAYOUT_split_3x5_2(
+  KC_Q , KC_W         , KC_E         , KC_R         , KC_T         ,                                                         KC_Y         , KC_U         , KC_I         , KC_O         , KC_P   ,
+  KC_A , LALT_T(KC_S) , LCTL_T(KC_D) , LSFT_T(KC_F) , LGUI_T(KC_G) ,                                                         LGUI_T(KC_H) , LSFT_T(KC_J) , LCTL_T(KC_K) , LALT_T(KC_L) , KC_SCLN,
+  KC_Z , KC_X         , KC_C         , KC_V         , KC_B         ,                                                         KC_N         , KC_M         , KC_COMM      , KC_DOT       , KC_SLSH,
+                                                      KC_BSPC      , LT(MO(_SYMBOLS), KC_TAB) ,     LT(MO(_MOUSE), KC_ENT) , KC_SPC
 ),
 
 //    ┌───┬──────────────┬──────────────┬──────────────┬───────────┐               ┌──────┬───────────┬───────────┬───────────┬───┐
@@ -64,11 +65,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //    └───┴──────────────┴──────────────┴──────────────┼───────────┼─────┐   ┌─────┼──────┼───────────┴───────────┴───────────┴───┘
 //                                                     │           │     │   │     │      │
 //                                                     └───────────┴─────┘   └─────┴──────┘
-[SYMBOLS] = LAYOUT_split_3x5_2(
+[_SYMBOLS] = LAYOUT_split_3x5_2(
   KC_GRAVE , KC_EQL          , KC_MINS         , KC_QUOT         , KC_TAB          ,                         KC_NO   , KC_7         , KC_8         , KC_9         , KC_PIPE,
   KC_LPRN  , LALT_T(KC_LEFT) , LCTL_T(KC_DOWN) , LSFT_T(KC_RGHT) , LGUI_T(KC_RPRN) ,                         KC_LGUI , LSFT_T(KC_4) , LCTL_T(KC_5) , LALT_T(KC_6) , KC_BSLS,
   KC_LBRC  , KC_RBRC         , KC_HASH         , KC_LCBR         , KC_AMPR         ,                         KC_0    , KC_1         , KC_2         , KC_3         , KC_BSLS,
                                                                    KC_TRNS         , KC_TRNS ,     KC_TRNS , KC_TRNS
+),
+
+//    ┌─────────┬──────────┬─────────┬─────────┬─────────┐               ┌─────────┬──────┬──────┬──────┬─────┐
+//    │ RGB_TOG │ RGB_MOD  │ RGB_HUI │ RGB_SAI │ RGB_VAI │               │ RGB_SPI │ btn1 │ wh_u │ btn2 │     │
+//    ├─────────┼──────────┼─────────┼─────────┼─────────┤               ├─────────┼──────┼──────┼──────┼─────┤
+//    │         │   wh_l   │         │  wh_r   │         │               │  ms_l   │ ms_d │ ms_u │ ms_r │     │
+//    ├─────────┼──────────┼─────────┼─────────┼─────────┤               ├─────────┼──────┼──────┼──────┼─────┤
+//    │         │ RGB_RMOD │ RGB_HUD │ RGB_SAD │ RGB_VAD │               │ RGB_SPD │ wh_l │ wh_d │ wh_r │     │
+//    └─────────┴──────────┴─────────┴─────────┼─────────┼─────┐   ┌─────┼─────────┼──────┴──────┴──────┴─────┘
+//                                             │         │     │   │     │         │
+//                                             └─────────┴─────┘   └─────┴─────────┘
+[_MOUSE] = LAYOUT_split_3x5_2(
+  RGB_TOG , RGB_MOD  , RGB_HUI , RGB_SAI , RGB_VAI ,                         RGB_SPI , KC_BTN1 , KC_WH_U , KC_BTN2 , KC_TRNS,
+  KC_TRNS , KC_WH_L  , KC_TRNS , KC_WH_R , KC_TRNS ,                         KC_MS_L , KC_MS_D , KC_MS_U , KC_MS_R , KC_TRNS,
+  KC_TRNS , RGB_RMOD , RGB_HUD , RGB_SAD , RGB_VAD ,                         RGB_SPD , KC_WH_L , KC_WH_D , KC_WH_R , KC_TRNS,
+                                           KC_TRNS , KC_TRNS ,     KC_TRNS , KC_TRNS
 )
 };
 
