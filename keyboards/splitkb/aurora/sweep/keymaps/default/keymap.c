@@ -107,8 +107,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    // TODO: Make something cool with colors =)
-    rgblight_sethsv(190, 22, 73);
     switch (keycode) {
         case _ASSIGN:
             if (record->event.pressed) {
@@ -132,3 +130,10 @@ void keyboard_pre_init_user(void) {
   // (Due to technical reasons, high is off and low is on)
   writePinHigh(24);
 }
+
+#ifdef RGBLIGT_ENABLE
+void keyboard_post_init_user(void){
+  // TODO: Make something cool with colors =)
+  rgblight_sethsv(190, 22, 73);
+}
+#endif
