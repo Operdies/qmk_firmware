@@ -18,26 +18,21 @@ enum custom_keycodes {
 };
 
 enum combos {
-  JK_ESC,
-  QWE_ASSIGN,
-  AE_AE,
-  OE_OE,
-  AO_AO,
+    JK_ESC,
+    QWE_ASSIGN,
+    AE_AE,
+    OE_OE,
+    AO_AO,
 };
 
-const uint16_t PROGMEM jk_combo[] = {LSFT_T(KC_J) , LCTL_T(KC_K), COMBO_END};
+const uint16_t PROGMEM jk_combo[]       = {LSFT_T(KC_J), LCTL_T(KC_K), COMBO_END};
 const uint16_t PROGMEM eqassign_combo[] = {KC_Q, KC_W, KC_E, COMBO_END};
-const uint16_t PROGMEM ae_combo[] = {KC_A, KC_E, COMBO_END};
-const uint16_t PROGMEM oe_combo[] = {KC_O, KC_E, COMBO_END};
-const uint16_t PROGMEM ao_combo[] = {KC_A, KC_O, COMBO_END};
-
+const uint16_t PROGMEM ae_combo[]       = {KC_A, KC_E, COMBO_END};
+const uint16_t PROGMEM oe_combo[]       = {KC_O, KC_E, COMBO_END};
+const uint16_t PROGMEM ao_combo[]       = {KC_A, KC_O, COMBO_END};
 
 combo_t key_combos[] = {
-  [JK_ESC] = COMBO(jk_combo, KC_ESC),
-  [QWE_ASSIGN] = COMBO(eqassign_combo, _ASSIGN),
-  [AE_AE] = COMBO(ae_combo, ALGR(KC_Z)),
-  [OE_OE] = COMBO(oe_combo, ALGR(KC_L)),
-  [AO_AO] = COMBO(ao_combo, ALGR(KC_W)),
+    [JK_ESC] = COMBO(jk_combo, KC_ESC), [QWE_ASSIGN] = COMBO(eqassign_combo, _ASSIGN), [AE_AE] = COMBO(ae_combo, ALGR(KC_Z)), [OE_OE] = COMBO(oe_combo, ALGR(KC_L)), [AO_AO] = COMBO(ao_combo, ALGR(KC_W)),
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -106,7 +101,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 )
 };
 
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    static int inc = 10;
+    static int h_max = 299;
+    static int h_min = 10;
+
+    static int h = 100;
+    /* static int s_max = 100; */
+    static int s = 70;
+    /* static int v_max = 100; */
+    static int v = 100;
+
+    if (h >= h_max || h <= h_min)
+        inc = -inc;
+    h += inc;
+
+
+    /* s = (s + 1) % s_max; */
+    /* h = (h + 1) % h_max; */
+    /* v = (v + 1) % v_max; */
+    rgblight_sethsv(h, s, v);
     switch (keycode) {
         case _ASSIGN:
             if (record->event.pressed) {
@@ -124,16 +139,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 }
 
 void keyboard_pre_init_user(void) {
-  // Set our LED pin as output
-  setPinOutput(24);
-  // Turn the LED off
-  // (Due to technical reasons, high is off and low is on)
-  writePinHigh(24);
+    // Set our LED pin as output
+    setPinOutput(24);
+    // Turn the LED off
+    // (Due to technical reasons, high is off and low is on)
+    writePinHigh(24);
 }
 
-#ifdef RGBLIGT_ENABLE
-void keyboard_post_init_user(void){
-  // TODO: Make something cool with colors =)
-  rgblight_sethsv(190, 22, 73);
+void keyboard_post_init_user(void) {
+    rgblight_sethsv(190, 22, 73);
 }
-#endif
+
