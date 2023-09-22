@@ -15,6 +15,9 @@ enum layer_names {
 
 enum custom_keycodes {
     _ASSIGN = SAFE_RANGE,
+    _AUTOBRACE,
+    _AUTOBRACKET,
+    _AUTOPAREN,
 };
 
 enum combos {
@@ -23,6 +26,9 @@ enum combos {
     AE_AE,
     OE_OE,
     AO_AO,
+    RU_PAR,
+    EI_BRA,
+    WO_BRC,
 };
 
 const uint16_t PROGMEM jk_combo[]       = {LSFT_T(KC_J), LCTL_T(KC_K), COMBO_END};
@@ -30,9 +36,19 @@ const uint16_t PROGMEM eqassign_combo[] = {KC_Q, KC_W, KC_E, COMBO_END};
 const uint16_t PROGMEM ae_combo[]       = {KC_A, KC_E, COMBO_END};
 const uint16_t PROGMEM oe_combo[]       = {KC_O, KC_E, COMBO_END};
 const uint16_t PROGMEM ao_combo[]       = {KC_A, KC_O, COMBO_END};
+const uint16_t PROGMEM ru_combo[]       = {KC_R, KC_U, COMBO_END};
+const uint16_t PROGMEM ei_combo[]       = {KC_E, KC_I, COMBO_END};
+const uint16_t PROGMEM wo_combo[]       = {KC_W, KC_O, COMBO_END};
 
 combo_t key_combos[] = {
-    [JK_ESC] = COMBO(jk_combo, KC_ESC), [QWE_ASSIGN] = COMBO(eqassign_combo, _ASSIGN), [AE_AE] = COMBO(ae_combo, ALGR(KC_Z)), [OE_OE] = COMBO(oe_combo, ALGR(KC_L)), [AO_AO] = COMBO(ao_combo, ALGR(KC_W)),
+    [JK_ESC] = COMBO(jk_combo, KC_ESC),
+    [QWE_ASSIGN] = COMBO(eqassign_combo, _ASSIGN),
+    [AE_AE] = COMBO(ae_combo, ALGR(KC_Z)),
+    [OE_OE] = COMBO(oe_combo, ALGR(KC_L)),
+    [AO_AO] = COMBO(ao_combo, ALGR(KC_W)),
+    [RU_PAR] = COMBO(ru_combo, _AUTOPAREN),
+    [EI_BRA] = COMBO(ei_combo, _AUTOBRACKET),
+    [WO_BRC] = COMBO(wo_combo, _AUTOBRACE),
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -126,6 +142,24 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case _ASSIGN:
             if (record->event.pressed) {
                 SEND_STRING(" = ");
+            }
+            break;
+        case _AUTOBRACE:
+            if (record->event.pressed) {
+                SEND_STRING("{}");
+                tap_code16(KC_LEFT);
+            }
+            break;
+        case _AUTOPAREN:
+            if (record->event.pressed) {
+                SEND_STRING("()");
+                tap_code16(KC_LEFT);
+            }
+            break;
+        case _AUTOBRACKET:
+            if (record->event.pressed) {
+                SEND_STRING("[]");
+                tap_code16(KC_LEFT);
             }
             break;
         case LGUI_T(KC_RPRN):
