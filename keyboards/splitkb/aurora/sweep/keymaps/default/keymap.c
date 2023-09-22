@@ -18,6 +18,7 @@ enum custom_keycodes {
     _AUTOBRACE,
     _AUTOBRACKET,
     _AUTOPAREN,
+    _AUTOANGLE,
 };
 
 enum combos {
@@ -29,6 +30,7 @@ enum combos {
     RU_PAR,
     EI_BRA,
     WO_BRC,
+    TY_ANG,
 };
 
 const uint16_t PROGMEM jk_combo[]       = {LSFT_T(KC_J), LCTL_T(KC_K), COMBO_END};
@@ -39,6 +41,7 @@ const uint16_t PROGMEM ao_combo[]       = {KC_A, KC_O, COMBO_END};
 const uint16_t PROGMEM ru_combo[]       = {KC_R, KC_U, COMBO_END};
 const uint16_t PROGMEM ei_combo[]       = {KC_E, KC_I, COMBO_END};
 const uint16_t PROGMEM wo_combo[]       = {KC_W, KC_O, COMBO_END};
+const uint16_t PROGMEM ty_combo[]       = {KC_T, KC_Y, COMBO_END};
 
 combo_t key_combos[] = {
     [JK_ESC] = COMBO(jk_combo, KC_ESC),
@@ -46,9 +49,10 @@ combo_t key_combos[] = {
     [AE_AE] = COMBO(ae_combo, ALGR(KC_Z)),
     [OE_OE] = COMBO(oe_combo, ALGR(KC_L)),
     [AO_AO] = COMBO(ao_combo, ALGR(KC_W)),
-    [RU_PAR] = COMBO(ru_combo, _AUTOPAREN),
+    [RU_PAR] = COMBO(wo_combo, _AUTOPAREN),
     [EI_BRA] = COMBO(ei_combo, _AUTOBRACKET),
-    [WO_BRC] = COMBO(wo_combo, _AUTOBRACE),
+    [WO_BRC] = COMBO(ru_combo, _AUTOBRACE),
+    [TY_ANG] = COMBO(ty_combo, _AUTOANGLE),
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -159,6 +163,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case _AUTOBRACKET:
             if (record->event.pressed) {
                 SEND_STRING("[]");
+                tap_code16(KC_LEFT);
+            }
+            break;
+        case _AUTOANGLE:
+            if (record->event.pressed) {
+                SEND_STRING("<>");
                 tap_code16(KC_LEFT);
             }
             break;
