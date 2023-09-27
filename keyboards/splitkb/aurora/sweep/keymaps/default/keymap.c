@@ -35,9 +35,9 @@ enum combos {
 
 const uint16_t PROGMEM jk_combo[]       = {LSFT_T(KC_J), LCTL_T(KC_K), COMBO_END};
 const uint16_t PROGMEM eqassign_combo[] = {KC_Q, KC_W, KC_E, COMBO_END};
-const uint16_t PROGMEM ae_combo[]       = {KC_A, KC_E, COMBO_END};
+const uint16_t PROGMEM ae_combo[]       = {LT(_SYMBOLS, KC_A), KC_E, COMBO_END};
 const uint16_t PROGMEM oe_combo[]       = {KC_O, KC_E, COMBO_END};
-const uint16_t PROGMEM ao_combo[]       = {KC_A, KC_O, COMBO_END};
+const uint16_t PROGMEM ao_combo[]       = {LT(_SYMBOLS, KC_A), KC_O, COMBO_END};
 const uint16_t PROGMEM ru_combo[]       = {KC_R, KC_U, COMBO_END};
 const uint16_t PROGMEM ei_combo[]       = {KC_E, KC_I, COMBO_END};
 const uint16_t PROGMEM wo_combo[]       = {KC_W, KC_O, COMBO_END};
@@ -56,20 +56,20 @@ combo_t key_combos[] = {
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-//    ┌───┬───────────┬───────────┬───────────┬───────────┐                                                 ┌───────────┬───────────┬───────────┬───────────┬───┐
-//    │ q │     w     │     e     │     r     │     t     │                                                 │     y     │     u     │     i     │     o     │ p │
-//    ├───┼───────────┼───────────┼───────────┼───────────┤                                                 ├───────────┼───────────┼───────────┼───────────┼───┤
-//    │ a │ LALT_T(s) │ LCTL_T(d) │ LSFT_T(f) │ LGUI_T(g) │                                                 │ LGUI_T(h) │ LSFT_T(j) │ LCTL_T(k) │ LALT_T(l) │ ; │
-//    ├───┼───────────┼───────────┼───────────┼───────────┤                                                 ├───────────┼───────────┼───────────┼───────────┼───┤
-//    │ z │     x     │     c     │     v     │     b     │                                                 │     n     │     m     │     ,     │     .     │ / │
-//    └───┴───────────┴───────────┴───────────┼───────────┼───────────────────────┐   ┌─────────────────────┼───────────┼───────────┴───────────┴───────────┴───┘
-//                                            │   bspc    │ LT(MO(_SYMBOLS), tab) │   │ LT(MO(_MOUSE), ent) │    spc    │
-//                                            └───────────┴───────────────────────┘   └─────────────────────┴───────────┘
+//    ┌─────────────────┬───────────┬───────────┬───────────┬───────────┐                               ┌───────────┬───────────┬───────────┬───────────┬─────────────────┐
+//    │        q        │     w     │     e     │     r     │     t     │                               │     y     │     u     │     i     │     o     │        p        │
+//    ├─────────────────┼───────────┼───────────┼───────────┼───────────┤                               ├───────────┼───────────┼───────────┼───────────┼─────────────────┤
+//    │ LT(_SYMBOLS, a) │ LALT_T(s) │ LCTL_T(d) │ LSFT_T(f) │ LGUI_T(g) │                               │ LGUI_T(h) │ LSFT_T(j) │ LCTL_T(k) │ LALT_T(l) │ LT(_SYMBOLS, ;) │
+//    ├─────────────────┼───────────┼───────────┼───────────┼───────────┤                               ├───────────┼───────────┼───────────┼───────────┼─────────────────┤
+//    │        z        │     x     │     c     │     v     │     b     │                               │     n     │     m     │     ,     │     .     │        /        │
+//    └─────────────────┴───────────┴───────────┴───────────┼───────────┼─────┐   ┌─────────────────────┼───────────┼───────────┴───────────┴───────────┴─────────────────┘
+//                                                          │   bspc    │ tab │   │ LT(MO(_MOUSE), ent) │    spc    │
+//                                                          └───────────┴─────┘   └─────────────────────┴───────────┘
 [_HOMEROW] = LAYOUT_split_3x5_2(
-  KC_Q , KC_W         , KC_E         , KC_R         , KC_T         ,                                                         KC_Y         , KC_U         , KC_I         , KC_O         , KC_P   ,
-  KC_A , LALT_T(KC_S) , LCTL_T(KC_D) , LSFT_T(KC_F) , LGUI_T(KC_G) ,                                                         LGUI_T(KC_H) , LSFT_T(KC_J) , LCTL_T(KC_K) , LALT_T(KC_L) , KC_SCLN,
-  KC_Z , KC_X         , KC_C         , KC_V         , KC_B         ,                                                         KC_N         , KC_M         , KC_COMM      , KC_DOT       , KC_SLSH,
-                                                      KC_BSPC      , LT(MO(_SYMBOLS), KC_TAB) ,     LT(MO(_MOUSE), KC_ENT) , KC_SPC
+  KC_Q               , KC_W         , KC_E         , KC_R         , KC_T         ,                                       KC_Y         , KC_U         , KC_I         , KC_O         , KC_P                 ,
+  LT(_SYMBOLS, KC_A) , LALT_T(KC_S) , LCTL_T(KC_D) , LSFT_T(KC_F) , LGUI_T(KC_G) ,                                       LGUI_T(KC_H) , LSFT_T(KC_J) , LCTL_T(KC_K) , LALT_T(KC_L) , LT(_SYMBOLS, KC_SCLN),
+  KC_Z               , KC_X         , KC_C         , KC_V         , KC_B         ,                                       KC_N         , KC_M         , KC_COMM      , KC_DOT       , KC_SLSH              ,
+                                                                    KC_BSPC      , KC_TAB ,     LT(MO(_MOUSE), KC_ENT) , KC_SPC
 ),
 
 //    ┌───┬──────────────┬──────────────┬──────────────┬───────────┐                             ┌──────┬───────────┬───────────┬───────────┬───┐
@@ -88,20 +88,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                    KC_TRNS         , KC_TRNS ,     MO(_ESCAPE_HATCH) , KC_TRNS
 ),
 
-//    ┌───┬──────┬─────┬──────┬─────┐                              ┌──────┬──────┬──────┬──────┬─────┐
-//    │ ` │  =   │  -  │  '   │ tab │                              │      │ btn1 │ wh_u │ btn2 │     │
-//    ├───┼──────┼─────┼──────┼─────┤                              ├──────┼──────┼──────┼──────┼─────┤
-//    │ ( │ wh_l │     │ wh_r │  )  │                              │ ms_l │ ms_d │ ms_u │ ms_r │     │
-//    ├───┼──────┼─────┼──────┼─────┤                              ├──────┼──────┼──────┼──────┼─────┤
-//    │ [ │  ]   │  #  │  {   │  }  │                              │      │ wh_l │ wh_d │ wh_r │     │
-//    └───┴──────┴─────┴──────┼─────┼────────────────────┐   ┌─────┼──────┼──────┴──────┴──────┴─────┘
-//                            │     │ OSL(_ESCAPE_HATCH) │   │     │      │
-//                            └─────┴────────────────────┘   └─────┴──────┘
+//    ┌───┬──────┬─────┬──────┬─────┐               ┌──────┬──────┬──────┬──────┬─────┐
+//    │ ` │  =   │  -  │  '   │ tab │               │      │ btn1 │ wh_u │ btn2 │     │
+//    ├───┼──────┼─────┼──────┼─────┤               ├──────┼──────┼──────┼──────┼─────┤
+//    │ ( │ wh_l │     │ wh_r │  )  │               │ ms_l │ ms_d │ ms_u │ ms_r │     │
+//    ├───┼──────┼─────┼──────┼─────┤               ├──────┼──────┼──────┼──────┼─────┤
+//    │ [ │  ]   │  #  │  {   │  }  │               │      │ wh_l │ wh_d │ wh_r │     │
+//    └───┴──────┴─────┴──────┼─────┼─────┐   ┌─────┼──────┼──────┴──────┴──────┴─────┘
+//                            │     │     │   │     │      │
+//                            └─────┴─────┘   └─────┴──────┘
 [_MOUSE] = LAYOUT_split_3x5_2(
-  KC_GRAVE , KC_EQL  , KC_MINS , KC_QUOT , KC_TAB  ,                                    KC_TRNS , KC_BTN1 , KC_WH_U , KC_BTN2 , KC_TRNS,
-  KC_LPRN  , KC_WH_L , KC_TRNS , KC_WH_R , KC_RPRN ,                                    KC_MS_L , KC_MS_D , KC_MS_U , KC_MS_R , KC_TRNS,
-  KC_LBRC  , KC_RBRC , KC_HASH , KC_LCBR , KC_RCBR ,                                    KC_TRNS , KC_WH_L , KC_WH_D , KC_WH_R , KC_TRNS,
-                                           KC_TRNS , OSL(_ESCAPE_HATCH) ,     KC_TRNS , KC_TRNS
+  KC_GRAVE , KC_EQL  , KC_MINS , KC_QUOT , KC_TAB  ,                         KC_TRNS , KC_BTN1 , KC_WH_U , KC_BTN2 , KC_TRNS,
+  KC_LPRN  , KC_WH_L , KC_TRNS , KC_WH_R , KC_RPRN ,                         KC_MS_L , KC_MS_D , KC_MS_U , KC_MS_R , KC_TRNS,
+  KC_LBRC  , KC_RBRC , KC_HASH , KC_LCBR , KC_RCBR ,                         KC_TRNS , KC_WH_L , KC_WH_D , KC_WH_R , KC_TRNS,
+                                           KC_TRNS , KC_TRNS ,     KC_TRNS , KC_TRNS
 ),
 
 //    ┌─────┬──────┬──────┬──────┬─────┐               ┌─────┬────┬────┬────┬─────┐

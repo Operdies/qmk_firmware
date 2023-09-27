@@ -17,9 +17,11 @@
 #pragma once
 
 #define TAPPING_TERM 180
+#define PERMISSIVE_HOLD
+
 #define FORCE_NKRO
 
-#define COMBO_TERM 50
+#define COMBO_TERM 20
 #define COMBO_STRICT_TIMER
 
 // Not yet available in `info.json`
