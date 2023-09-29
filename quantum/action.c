@@ -58,6 +58,7 @@ int retro_tapping_counter = 0;
 __attribute__((weak)) bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
     return false;
 }
+#endif
 #if (BILATERAL_COMBINATIONS + 0)
 #    include "quantum.h"
 #endif
@@ -472,7 +473,7 @@ void process_action(keyrecord_t *record, action_t action) {
                     send_keyboard_report();
                 }
 #ifdef BILATERAL_COMBINATIONS
-                if (!(IS_MOD(action.key.code) || action.key.code == KC_NO)) {
+                if (!(IS_MODIFIER_KEYCODE(action.key.code) || action.key.code == KC_NO)) {
                     // regular keycode tap during mod-tap hold
                     bilateral_combinations_tap(event);
                 }

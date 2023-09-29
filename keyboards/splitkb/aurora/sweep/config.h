@@ -26,6 +26,8 @@
 
 #define RGBLIGHT_SLEEP
 
+#define BILATERAL_COMBINATIONS 500
+
 // Not yet available in `info.json`
 #ifdef OLED_ENABLE
 #   define OLED_FONT_H "keyboards/splitkb/aurora/sweep/glcdfont.c"
