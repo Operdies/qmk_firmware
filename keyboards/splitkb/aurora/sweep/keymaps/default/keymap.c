@@ -82,10 +82,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //                                                     │           │     │   │ MO(_ESCAPE_HATCH) │      │
 //                                                     └───────────┴─────┘   └───────────────────┴──────┘
 [_SYMBOLS] = LAYOUT_split_3x5_2(
-  KC_GRAVE , KC_EQL          , KC_MINS         , KC_QUOT         , KC_TAB          ,                                   KC_NO   , KC_7         , KC_8         , KC_9         , KC_PIPE,
+  KC_GRAVE , KC_EQL          , KC_MINS         , KC_QUOT         , KC_DEL          ,                                   KC_NO   , KC_7         , KC_8         , KC_9         , KC_PIPE,
   KC_LPRN  , LALT_T(KC_LEFT) , LCTL_T(KC_DOWN) , LSFT_T(KC_RGHT) , LGUI_T(KC_RPRN) ,                                   KC_LGUI , LSFT_T(KC_4) , LCTL_T(KC_5) , LALT_T(KC_6) , KC_BSLS,
   KC_LBRC  , KC_RBRC         , KC_HASH         , KC_LCBR         , KC_RCBR         ,                                   KC_0    , KC_1         , KC_2         , KC_3         , KC_EQL ,
-                                                                   KC_TRNS         , KC_TRNS ,     MO(_ESCAPE_HATCH) , KC_TRNS
+                                                                   KC_DEL          , KC_TRNS ,     MO(_ESCAPE_HATCH) , KC_TRNS
 ),
 
 //    ┌───┬──────┬─────┬──────┬─────┐               ┌──────┬──────┬──────┬──────┬─────┐
