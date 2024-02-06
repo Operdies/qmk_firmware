@@ -45,9 +45,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                  KC_DEL          , KC_TRNS         ,     MO(_FUNCTION) , MO(_FUNCTION)
 ),
 [_MOUSE] = LAYOUT_split_3x5_2(
-  KC_GRAVE , KC_EQL  , KC_UP   , KC_QUOT  , KC_TAB  ,    KC_WBAK , KC_BTN1 , KC_WH_U , KC_BTN2 , KC_WFWD,
-  KC_LPRN  , KC_LEFT , KC_DOWN , KC_RIGHT , KC_RPRN ,    KC_MS_L , KC_MS_D , KC_MS_U , KC_MS_R , KC_TRNS,
-  KC_LBRC  , KC_RBRC , KC_HASH , KC_LCBR  , KC_RCBR ,    KC_TRNS , KC_WH_L , KC_WH_D , KC_WH_R , KC_TRNS,
+  KC_TRNS  , KC_TRNS , KC_TRNS , KC_TRNS  , KC_TRNS ,    KC_WBAK , KC_BTN1 , KC_WH_U , KC_BTN2 , KC_WFWD,
+  KC_TRNS  , KC_LALT , KC_LCTL , KC_LSFT  , KC_LGUI ,    KC_MS_L , KC_MS_D , KC_MS_U , KC_MS_R , KC_TRNS,
+  KC_TRNS  , KC_TRNS , KC_TRNS , KC_TRNS  , KC_TRNS ,    KC_TRNS , KC_WH_L , KC_WH_D , KC_WH_R , KC_TRNS,
                                  KC_TRNS  , KC_TRNS ,    KC_TRNS , KC_TRNS
 ),
 [_FUNCTION] = LAYOUT_split_3x5_2(
