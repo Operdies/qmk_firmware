@@ -22,13 +22,19 @@
 #    define RGB_MATRIX_KEYPRESSES
 #    define ENABLE_RGB_MATRIX_SOLID_REACTIVE_SIMPLE
 #    define ENABLE_RGB_MATRIX_SOLID_SPLASH
-#    define ENABLE_RGB_MATRIX_RAINBOW_BEACON 
+#    define ENABLE_RGB_MATRIX_RAINBOW_BEACON
 #endif
 
 // Not yet available in `keymap.json` format
 #ifdef MOUSEKEY_ENABLE
-     // The default is 100
-#    define MOUSEKEY_WHEEL_INTERVAL 50
-     // The default is 40
-#    define MOUSEKEY_WHEEL_TIME_TO_MAX 100
+// The default is 100
+#define MOUSEKEY_WHEEL_INTERVAL 50
+// The default is 40
+#define MOUSEKEY_WHEEL_TIME_TO_MAX 100
+// Default: 8
+#define MOUSEKEY_MOVE_DELTA 5
+// Default: 10
+#define MOUSEKEY_MAX_SPEED 10
+// Default: 30
+#define MOUSEKEY_TIME_TO_MAX 50
 #endif
