@@ -89,15 +89,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
     return true;
 }
 
-static int h = 20;
-static int s = 82;
-static int v = 73;
-
 void caps_word_set_user(bool active) {
-    if (active)
-        rgblight_sethsv(50, 80, 80);
-    else
-        rgblight_sethsv(h, s, v);
+    static uint8_t prev = 0;
+    uint8_t blue_ish = 100;
+
+    HSV hsv = rgb_matrix_get_hsv();
+
+    if (active) {
+        rgb_matrix_sethsv(blue_ish, hsv.s, hsv.v);
+        prev = hsv.h;
+    } else {
+        rgb_matrix_sethsv(prev, hsv.s, hsv.v);
+    }
 }
 
 void keyboard_pre_init_user(void) {
@@ -107,8 +110,3 @@ void keyboard_pre_init_user(void) {
     // (Due to technical reasons, high is off and low is on)
     writePinHigh(24);
 }
-
-void keyboard_post_init_user(void) {
-    rgblight_sethsv(h, s, v);
-}
-

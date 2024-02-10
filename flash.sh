@@ -3,5 +3,12 @@
 set -e
 
 make splitkb/aurora/sweep/rev1:other
-udisksctl mount -b /dev/disk/by-id/usb-RPI_RP2_E0C9125B0D9B-0:0-part1
+for i in $(seq 1 10); do
+    if udisksctl mount -b /dev/disk/by-id/usb-RPI_RP2_E0C9125B0D9B-0:0-part1 ; then
+        break
+    fi
+    echo "Mount fail $i / 10"
+    sleep 1
+done
+
 make splitkb/aurora/sweep/rev1:other:flash
