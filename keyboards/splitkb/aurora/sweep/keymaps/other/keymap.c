@@ -45,13 +45,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                        KC_DEL             , KC_TRNS                  ,     MO(_FUNCTION)          , MO(_FUNCTION)
 ),
 [_MOUSE] = LAYOUT_split_3x5_2(
-  KC_LBRC    , KC_TILD           , KC_ASTR           , KC_AMPR            , KC_RBRC                  ,     KC_BTN3                , KC_BTN1          , KC_WH_U       , KC_BTN2       , KC_BTN5,
+  KC_LBRC    , KC_TILD           , KC_ASTR           , KC_AMPR            , KC_RBRC                  ,     KC_BTN4                , KC_BTN1          , KC_WH_U       , KC_BTN2       , KC_BTN5,
   KC_LPRN    , LALT_T(KC_CIRC)   , LCTL_T(KC_PERC)   , LSFT_T(KC_DLR)     , LGUI_T(KC_RPRN)          ,     KC_MS_L                , KC_MS_D          , KC_MS_U       , KC_MS_R       , KC_BTN3,
   KC_LCBR    , KC_HASH           , KC_AT             , KC_EXLM            , KC_RCBR                  ,     KC_TRNS                , KC_WH_L          , KC_WH_D       , KC_WH_R       , KC_TRNS,
                                                        KC_TRNS            , KC_TRNS                  ,     KC_TRNS                , KC_TRNS
 ),
 [_FUNCTION] = LAYOUT_split_3x5_2(
-  ALGR(KC_W) , KC_TRNS           , KC_UP             , KC_TRNS            , KC_TRNS                  ,     KC_DEL                 , KC_F7            , KC_F8         , KC_F9         , KC_F10,
+  ALGR(KC_W) , RGB_TOG           , KC_UP             , RGB_MOD            , RGB_HUI                  ,     KC_DEL                 , KC_F7            , KC_F8         , KC_F9         , KC_F10,
   ALGR(KC_L) , LALT_T(KC_LEFT)   , LCTL_T(KC_DOWN)   , LSFT_T(KC_RIGHT)   , KC_LGUI                  ,     KC_LGUI                , RSFT_T(KC_F4)    , LCTL_T(KC_F5) , LALT_T(KC_F6) , KC_F11,
   ALGR(KC_Z) , KC_TRNS           , KC_TRNS           , KC_TRNS            , KC_TRNS                  ,     KC_TRNS                , KC_F1            , KC_F2         , KC_F3         , KC_F12,
                                                        KC_TRNS            , KC_TRNS                  ,     KC_TRNS                , KC_TRNS
@@ -89,8 +89,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
     return true;
 }
 
-static int h = 190;
-static int s = 22;
+static int h = 20;
+static int s = 82;
 static int v = 73;
 
 void caps_word_set_user(bool active) {

@@ -32,3 +32,6 @@
 #    define MOUSEKEY_MAX_SPEED 10          // 10
 #    define MOUSEKEY_TIME_TO_MAX 50        // 30
 #endif
+
+#define RGB_DI_PIN D3
+#define RGBLIGHT_ANIMATIONS

@@ -24,8 +24,6 @@
 #define COMBO_TERM 30
 #define COMBO_STRICT_TIMER
 
-#define RGBLIGHT_SLEEP
-
 #define BILATERAL_COMBINATIONS 500
 
 // Not yet available in `info.json`
