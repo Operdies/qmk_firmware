@@ -53,8 +53,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_FUNCTION] = LAYOUT_split_3x5_2(
   ALGR(KC_W) , RGB_TOG           , KC_UP             , RGB_MOD            , RGB_HUI                  ,     KC_DEL                 , KC_F7            , KC_F8         , KC_F9         , KC_F10,
   ALGR(KC_L) , LALT_T(KC_LEFT)   , LCTL_T(KC_DOWN)   , LSFT_T(KC_RIGHT)   , KC_LGUI                  ,     KC_LGUI                , RSFT_T(KC_F4)    , RCTL_T(KC_F5) , RALT_T(KC_F6) , KC_F11,
-  ALGR(KC_Z) , KC_TRNS           , KC_TRNS           , KC_TRNS            , KC_TRNS                  ,     KC_TRNS                , KC_F1            , KC_F2         , KC_F3         , KC_F12,
-                                                       KC_TRNS            , KC_TRNS                  ,     KC_TRNS                , KC_TRNS
+  ALGR(KC_Z) , KC_TRNS           , KC_TRNS           , KC_TRNS            , RGB_SAI                  ,     KC_TRNS                , KC_F1            , KC_F2         , KC_F3         , KC_F12,
+                                                       KC_TRNS            , RGB_VAI                  ,     KC_TRNS                , KC_TRNS
 )};
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record)
