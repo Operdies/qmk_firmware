@@ -158,7 +158,7 @@
             {"flags": 4, "matrix": [7, 0], "x": 132, "y": 64},
             {"flags": 4, "matrix": [7, 1], "x": 153, "y": 60}
         ],
-        "max_brightness": 128,
+        "max_brightness": 255,
         "split_count": [23, 23]
     }
 }
