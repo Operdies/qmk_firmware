@@ -191,3 +191,9 @@ void keyboard_pre_init_user(void) {
     // (Due to technical reasons, high is off and low is on)
     writePinHigh(24);
 }
+uint16_t get_combo_term(uint16_t index, combo_t *combo) {
+    // Combos on different hands are easy to fumble
+    if (index == FJ_CAPS)
+        return 50;
+    return COMBO_TERM;
+}
