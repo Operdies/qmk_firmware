@@ -1,3 +1,4 @@
+#include "encoder.h"
 #include QMK_KEYBOARD_H
 
 #define LENGTH(X) (sizeof(X) / sizeof(X[0]))
@@ -9,6 +10,7 @@ enum layer_names {
     _MOUSE,
     _FUNCTION,
     _S2,
+    LAYER_LAST,
 };
 
 enum {
@@ -25,6 +27,22 @@ enum {
     TD_ESC_CAPS,
 };
 
+enum clockwiseness { CCW, CW, CW_LAST };
+uint16_t encoder_actions[LAYER_LAST][CW_LAST] = {
+    [_HOMEROW] = {
+        [CW] = LCTL(KC_R),
+        [CCW] = KC_U,
+    },
+    [_MOUSE] = {
+        [CW] = KC_DOWN,
+        [CCW] = KC_UP,
+    },
+    [_FUNCTION] = {
+        [CW] = KC_F7,
+        [CCW] = KC_F4,
+    },
+};
+
 tap_dance_action_t tap_dance_actions[] = {
     [TD_ESC_CAPS]  = ACTION_TAP_DANCE_DOUBLE(KC_ESC, KC_CAPS),
 };
@@ -39,12 +57,8 @@ const uint16_t PROGMEM fj_combo[]       = {LSFT_T(KC_F), LSFT_T(KC_J), COMBO_END
 
 combo_t key_combos[] = {
     // Undecided on combos. They add many combos to the base layers, but I tend to slam my fingers into the keys. Maybe just takes some getting used to?
-    // [ER_COMBO] = COMBO(er_combo, KC_LBRC),
-    // [WR_COMBO] = COMBO(wr_combo, KC_QUOT),
-    // TODO: rhs combo activations register as lhs keys for the purposes of bilateral combinations
-    // Shifting e.g. ui with f (homerow shift) only activates after the bilateral delay (500 ms)
-    // Disable this for now. RBRC is rarely needed with auto pairs
-    // [UI_COMBO] = COMBO(ui_combo, KC_RBRC),
+    [ER_COMBO] = COMBO(er_combo, KC_BSPC),
+    [UI_COMBO] = COMBO(ui_combo, KC_DEL),
     [DF_COMBO] = COMBO(df_combo, KC_TAB),
     [JK_ESC] = COMBO(jk_combo, KC_ESC),
     [FJ_CAPS] = COMBO(fj_combo, QK_CAPS_WORD_TOGGLE),
@@ -191,6 +205,16 @@ void keyboard_pre_init_user(void) {
     // (Due to technical reasons, high is off and low is on)
     writePinHigh(24);
 }
+
+bool encoder_update_user(uint8_t index, bool clockwise) {
+    uint16_t i;
+    if (!layer_state) i = 0;
+    else for (i = 0; i < LAYER_LAST && !(layer_state & ((layer_state_t)1 << i)); i++);
+    if (i < LAYER_LAST)
+        tap_code16(encoder_actions[i][clockwise]);
+    return false;
+}
+
 uint16_t get_combo_term(uint16_t index, combo_t *combo) {
     // Combos on different hands are easy to fumble
     if (index == FJ_CAPS)

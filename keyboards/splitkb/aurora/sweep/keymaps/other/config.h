@@ -34,3 +34,5 @@
 
 #define RGB_DI_PIN D3
 #define RGBLIGHT_ANIMATIONS
+
+#define ENCODER_RESOLUTION 2
