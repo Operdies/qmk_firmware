@@ -25,7 +25,7 @@
 #define COMBO_STRICT_TIMER
 #define COMBO_TERM_PER_COMBO
 
-#define BILATERAL_COMBINATIONS 500
+#define BILATERAL_COMBINATIONS 300
 
 // Not yet available in `info.json`
 #ifdef OLED_ENABLE
